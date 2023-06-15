@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { BASE_URL } from "../api";
 
 const Logout = ({ setToken }) => {
-  const handleLogout = () => {};
-  // need to finish the logout
+  const handleLogout = () => {
+  setToken("");
+  localStorage.removeItem('token');
+  console.log(token);
+  };
   return (
     <div>
-      {
-        <form onReset={handleLogout}>
-          <button type="reset">Logout</button>
-        </form>
-      }
+          <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };

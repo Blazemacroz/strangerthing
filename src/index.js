@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import Login from "./Components/Login.js";
 import Register from "./Components/Register.js";
 import Logout from "./Components/Logout.js";
+import Posts from "./Components/Posts.js";
 
 import { fetchPosts } from "./api/index";
 
@@ -18,18 +19,35 @@ const App = () => {
     fetchResults();
   }, []);
 
+useEffect(() => {
+const storedToken = localStorage.getItem('token');
+if (storedToken) {
+    setToken(storedToken);
+};
+}, []);
+
+const setStoredToken = (token) => {
+    localStorage.setItem('token', token);
+    setToken(token);
+}
+
   return (
     <div>
       <BrowserRouter>
         <div id="register">
           <Route path="/register">
-            <Register setToken={setToken} />
+            <Register setToken={setStoredToken} />
           </Route>
         </div>
         <Route exact path="/">
           <div>
             <Login setToken={setToken} />
-            <Logout setToken={setToken} />
+          </div>
+          <div>
+            <Logout setToken={setToken}/>
+          </div>
+          <div>
+            <Posts setToken={setToken}/>
           </div>
           <h1>Stranger's Things</h1>
           <h2>Posts</h2>
