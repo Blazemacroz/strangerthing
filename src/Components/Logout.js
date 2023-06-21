@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BASE_URL } from "../api";
+import {Button} from '@material-ui/core';
 
 const Logout = ({ setToken }) => {
   const handleLogout = () => {
@@ -9,7 +10,12 @@ const Logout = ({ setToken }) => {
   };
   return (
     <div>
-          <button onClick={handleLogout}>Logout</button>
+          <Button 
+          onClick={handleLogout}
+          color="secondary"
+          >
+            Logout
+          </Button>
     </div>
   );
 };

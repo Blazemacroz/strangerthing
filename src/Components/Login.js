@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BASE_URL } from "../api";
 
-const Login = ({ setToken }) => {
+const Login = ({ token, setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
@@ -29,8 +29,8 @@ const Login = ({ setToken }) => {
         });
         const result = await response.json();
         console.log(result);
-        setToken(result.data.token);
-        return result.data.token;
+        localStorage.setItem('token', result.data.token);
+        return result;
       } catch (err) {
         console.error(err);
       }
